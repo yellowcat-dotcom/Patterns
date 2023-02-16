@@ -25,10 +25,39 @@ def max_in_interval(list, a, b)
   end
 end
 
+def sred_arifmetich_abs(list)
+  kol=0
+  sum_abs=0
+  i=0
+  print("qqqqqqq")
+  if i==list.length then
+  #if list.empty? then
+    print("))))))")
+  else 
+    print("eeeee")
+    def sred_arifmetich_abss(list, kol, sum_abs, i)
+      print("wwwwww")
+      new_kol=kol+1
+      new_i=i+1
+      print(list[i])
+      if list[i]>=0 then
+        new_sum_abs=sum_abs+list[i]
+      else
+        new_sum_abs=sum_abs+(list[i]*(-1))
+      end
+      sred_arifmetich_abss(list,new_kol,new_sum_abs,new_i)
+    end
+  end
+  print (sum_abs/list.length)
+end
+
+def new_massif(list)
+
+end
 
 file_name = ARGV[0]
 array = File.open(file_name) {|file| file.readlines.map(&:to_i)}
-methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich, :new_massif]
+methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich_abs, :new_massif]
 puts 'Выберите:'
 puts '1. Необходимо определить является ли элемент по указанному индексу глобальным минимумом (ВВЕСТИ ИНДЕКС)
 2. Необходимо поменять местами минимальный и максимальный элементы массива.
