@@ -1,10 +1,20 @@
-
 def glob_min(list, index)
   if list.each_with_index.min[1] ==index then
     print("Элемент по указанному индексу является глобальным минимумом")
   else
     print("Элемент по указанному индексу не является глобальным минимумом")
   end
+end
+
+def min_max_reverse(list)
+  max=list.each_with_index.max[0]
+  index_max=list.each_with_index.max[1]
+  min=list.each_with_index.min[0]
+  index_min=list.each_with_index.min[1]
+  list[index_min]=max
+  list[index_max]=min
+  #print(list.each_with_index.min)
+  print(list)
 end
 
 
@@ -19,6 +29,7 @@ puts '1. Необходимо определить является ли эле�
 5. Построить новый массив с элементами, большими, чем среднее арифметическое списка, но меньшими, чем его максимальное значение.'
 
 method_num = STDIN.gets.chomp.to_i
+
 unless method_num.between?(1, methods.length)
   puts 'Команды с таким номером нет'
   return
@@ -47,3 +58,5 @@ if method_num==3
     res = method(methods[method_num-1]).call(array,a,b)
   end
 end
+
+method(methods[method_num-1]).call(array)
