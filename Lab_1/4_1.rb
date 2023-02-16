@@ -17,10 +17,18 @@ def min_max_reverse(list)
   print(list)
 end
 
+def max_in_interval(list, a, b)
+  if list.each_with_index.max[1].between?(a,b) then
+    print("Максимальный элемент находится в данном интервале")
+  else
+    print("Максимальный элемент не находится в данном интервале")
+  end
+end
+
 
 file_name = ARGV[0]
 array = File.open(file_name) {|file| file.readlines.map(&:to_i)}
-methods = [:glob_min, :min_max_reverse, :max_in_interval,:sred_arifmetich, :new_massif]
+methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich, :new_massif]
 puts 'Выберите:'
 puts '1. Необходимо определить является ли элемент по указанному индексу глобальным минимумом (ВВЕСТИ ИНДЕКС)
 2. Необходимо поменять местами минимальный и максимальный элементы массива.
@@ -54,9 +62,14 @@ if method_num==3
   b=STDIN.gets.chomp.to_i
   if a>b then 
     puts 'Введен неправельный интервал'
+  end
+  if b>array.length then
+    puts'неверный интервал'
   else 
     res = method(methods[method_num-1]).call(array,a,b)
   end
 end
 
-method(methods[method_num-1]).call(array)
+if method_num!=1&& method_num!=3
+  then method(methods[method_num-1]).call(array)
+end
