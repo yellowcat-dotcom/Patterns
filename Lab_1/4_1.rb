@@ -27,34 +27,12 @@ end
 
 
 def new_massif(list)
-  if list.empty? then
-    return 0
-  end
-  def sred_arifmetich_abss(list, sum_abs, i)
-    if i>=list.length then 
-      return (sum_abs/list.length)
-    else
-      new_i=i+1
-      new_sum= sum_abs + list[i]
-      sred_arifmetich_abss(list,new_sum,new_i)
-    end
-  end
-  sred_arif=sred_arifmetich_abss(list, 0, 0)
-  max_znach=list.max
-
-  #эл-ты больше sred_arif и меньше max_znach
-  def new_massiff(list, sred_arif, max_znach, n_list, i)
-    if i>=list.length then
-      return(n_list)     #Вернет новый лист
-    else
-      if list[i]>sred_arif && list[i]<max_znach then
-        n_list.push(list[i])
-      end
-      new_i=i+1
-      new_massiff(list, sred_arif, max_znach, n_list, new_i)
-    end
-  end
-  new_massiff(list, sred_arif, max_znach, [], 0)
+  sr_ar=list.sum/list.length
+  max_el=list.max 
+  return(list.select{|x|
+    if x>sr_ar && x<max_el then 
+      x
+    end})
 end
 
 file_name = ARGV[0]
