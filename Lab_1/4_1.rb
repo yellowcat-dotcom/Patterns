@@ -17,21 +17,12 @@ def max_in_interval(list, a, b)
 end
 
 def sred_arifmetich_abs(list)
-  if list.empty? then
-    return 0
-  end
-  def sred_arifmetich_abss(list, sum_abs, i)
-    if i>=list.length then 
-      return(sum_abs/list.length)
-    else
-      new_i=i+1
-      #print("new_i=",new_i)
-      new_sum= sum_abs + list[i].abs
-      #print("new_sum=",new_sum)
-      sred_arifmetich_abss(list,new_sum,new_i)
-    end
-  end
-  sred_arifmetich_abss(list, 0, 0)
+  list_abs=list.map{|x| 
+    if x<0 then 
+      x=x*(-1)
+    else x
+    end}
+  return(list_abs.sum/list.length)
 end
 
 
@@ -44,16 +35,13 @@ def new_massif(list)
       return (sum_abs/list.length)
     else
       new_i=i+1
-      #print("new_i=",new_i)
       new_sum= sum_abs + list[i]
-      #print("new_sum=",new_sum)
       sred_arifmetich_abss(list,new_sum,new_i)
     end
   end
   sred_arif=sred_arifmetich_abss(list, 0, 0)
   max_znach=list.max
-  #print("Среднее арифметическое=", sred_arif)
-  #print("Максимальный элемент=", max_znach)
+
   #эл-ты больше sred_arif и меньше max_znach
   def new_massiff(list, sred_arif, max_znach, n_list, i)
     if i>=list.length then
