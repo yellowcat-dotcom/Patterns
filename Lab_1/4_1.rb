@@ -9,16 +9,11 @@ def min_max_reverse(list)
   index_min=list.each_with_index.min[1]
   list[index_min]=max
   list[index_max]=min
-  #print(list.each_with_index.min)
   return(list)
 end
 
 def max_in_interval(list, a, b)
-  if list.each_with_index.max[1].between?(a,b) then
-    print("Максимальный элемент находится в данном интервале")
-  else
-    print("Максимальный элемент не находится в данном интервале")
-  end
+  list.each_with_index.max[1].between?(a,b)     
 end
 
 def sred_arifmetich_abs(list)
@@ -110,8 +105,25 @@ case method_num
 
   when 2
     print(min_max_reverse(array))
+
   when 3
-    puts "Результат: #{cycle_left(array)}"
+    puts 'Введите границы интервала:'
+    print"a="
+    a=STDIN.gets.chomp.to_i
+    print"b="
+    b=STDIN.gets.chomp.to_i
+    if a>b then 
+      puts 'Введен неправельный интервал'
+    end
+    if b>array.length then
+      puts'неверный интервал'
+    else 
+      if max_in_interval(array,a,b) then
+        print("Максимальный элемент находится в данном интервале")
+      else 
+        print("Максимальный элемент не находится в данном интервале")
+      end
+    end
   when 4
     puts"Элементы списка с чётными индексами: #{even_elements(array)}"
     puts"Элементы списка с нечётными индексами: #{odd_element(array)}"
