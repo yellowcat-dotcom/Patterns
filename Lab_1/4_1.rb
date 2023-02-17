@@ -1,9 +1,5 @@
 def glob_min(list, index)
-  if list.each_with_index.min[1] ==index then
-    print("Элемент по указанному индексу является глобальным минимумом")
-  else
-    print("Элемент по указанному индексу не является глобальным минимумом")
-  end
+  list.each_with_index.min[1] ==index    
 end
 
 def min_max_reverse(list)
@@ -80,7 +76,7 @@ end
 
 file_name = ARGV[0]
 array = File.open(file_name) {|file| file.readlines.map(&:to_i)}
-methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich_abs, :new_massif]
+#methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich_abs, :new_massif]
 puts 'Выберите:'
 puts '1. Необходимо определить является ли элемент по указанному индексу глобальным минимумом (ВВЕСТИ ИНДЕКС)
 2. Необходимо поменять местами минимальный и максимальный элементы массива.
@@ -90,38 +86,39 @@ puts '1. Необходимо определить является ли эле�
 
 method_num = STDIN.gets.chomp.to_i
 
+
+
 unless method_num.between?(1, methods.length)
   puts 'Команды с таким номером нет'
   return
 end
 
-if method_num==1
-  puts 'Введите индекс проверяемого элемента:'
-  print"index="
-  index_el=STDIN.gets.chomp.to_i  
-  if index_el > array.length then
-    puts "Неверный индекс, введите индекс меньше #{array.length}"
-  else
-    res = method(methods[method_num-1]).call(array,index_el)
-  end
-end
+case method_num
+  when 1
+    puts 'Введите индекс проверяемого элемента:'
+    print"index="
+    index_el=STDIN.gets.chomp.to_i
+    if index_el > array.length then
+      puts "Неверный индекс, введите индекс меньше #{array.length}"
+    else
+      if glob_min(array, index_el-1) then
+        print("Элемент по указанному индексу является глобальным минимумом")
+      else 
+        print("Элемент по указанному индексу не является глобальным минимумом")
+      end  
+    end
 
-if method_num==3
-  puts 'Введите границы интервала:'
-  print"a="
-  a=STDIN.gets.chomp.to_i
-  print"b="
-  b=STDIN.gets.chomp.to_i
-  if a>b then 
-    puts 'Введен неправельный интервал'
-  end
-  if b>array.length then
-    puts'неверный интервал'
-  else 
-    res = method(methods[method_num-1]).call(array,a,b)
-  end
-end
+  when 2
+    min_max_reverse(array)
+  when 3
+    puts "Результат: #{cycle_left(array)}"
+  when 4
+    puts"Элементы списка с чётными индексами: #{even_elements(array)}"
+    puts"Элементы списка с нечётными индексами: #{odd_element(array)}"
 
-if method_num!=1&& method_num!=3
-  then method(methods[method_num-1]).call(array)
+  when 5
+    ar_L1=array_of_elements_without_repeats(array)
+    ar_L2=create_array_of_number_of_elemets_without_repeats(array)
+    puts "L1: #{ar_L1}"
+    puts "L2: #{ar_L2}"
 end
