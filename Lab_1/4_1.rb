@@ -45,7 +45,37 @@ end
 
 
 def new_massif(list)
-
+  if list.empty? then
+    return 0
+  end
+  def sred_arifmetich_abss(list, sum_abs, i)
+    if i>=list.length then 
+      return (sum_abs/list.length)
+    else
+      new_i=i+1
+      #print("new_i=",new_i)
+      new_sum= sum_abs + list[i]
+      #print("new_sum=",new_sum)
+      sred_arifmetich_abss(list,new_sum,new_i)
+    end
+  end
+  sred_arif=sred_arifmetich_abss(list, 0, 0)
+  max_znach=list.max
+  print("Среднее арифметическое=", sred_arif)
+  print("Максимальный элемент=", max_znach)
+  #эл-ты больше sred_arif и меньше max_znach
+  def new_massiff(list, sred_arif, max_znach, n_list, i)
+    if i>=list.length then
+      print(n_list)
+    else
+      if list[i]>sred_arif && list[i]<max_znach then
+        n_list.push(list[i])
+      end
+      new_i=i+1
+      new_massiff(list, sred_arif, max_znach, n_list, new_i)
+    end
+  end
+  new_massiff(list, sred_arif, max_znach, [], 0)
 end
 
 file_name = ARGV[0]
