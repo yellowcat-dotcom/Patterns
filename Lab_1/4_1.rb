@@ -22,7 +22,7 @@ def sred_arifmetich_abs(list)
   end
   def sred_arifmetich_abss(list, sum_abs, i)
     if i>=list.length then 
-      print(sum_abs/list.length)
+      return(sum_abs/list.length)
     else
       new_i=i+1
       #print("new_i=",new_i)
@@ -52,12 +52,12 @@ def new_massif(list)
   end
   sred_arif=sred_arifmetich_abss(list, 0, 0)
   max_znach=list.max
-  print("Среднее арифметическое=", sred_arif)
-  print("Максимальный элемент=", max_znach)
+  #print("Среднее арифметическое=", sred_arif)
+  #print("Максимальный элемент=", max_znach)
   #эл-ты больше sred_arif и меньше max_znach
   def new_massiff(list, sred_arif, max_znach, n_list, i)
     if i>=list.length then
-      print(n_list)
+      return(n_list)     #Вернет новый лист
     else
       if list[i]>sred_arif && list[i]<max_znach then
         n_list.push(list[i])
@@ -71,7 +71,7 @@ end
 
 file_name = ARGV[0]
 array = File.open(file_name) {|file| file.readlines.map(&:to_i)}
-#methods = [:glob_min, :min_max_reverse, :max_in_interval, :sred_arifmetich_abs, :new_massif]
+
 puts 'Выберите:'
 puts '1. Необходимо определить является ли элемент по указанному индексу глобальным минимумом (ВВЕСТИ ИНДЕКС)
 2. Необходимо поменять местами минимальный и максимальный элементы массива.
@@ -81,12 +81,6 @@ puts '1. Необходимо определить является ли эле�
 
 method_num = STDIN.gets.chomp.to_i
 
-
-
-unless method_num.between?(1, methods.length)
-  puts 'Команды с таким номером нет'
-  return
-end
 
 case method_num
   when 1
@@ -124,13 +118,13 @@ case method_num
         print("Максимальный элемент не находится в данном интервале")
       end
     end
+
   when 4
-    puts"Элементы списка с чётными индексами: #{even_elements(array)}"
-    puts"Элементы списка с нечётными индексами: #{odd_element(array)}"
+    print(sred_arifmetich_abs(array))
 
   when 5
-    ar_L1=array_of_elements_without_repeats(array)
-    ar_L2=create_array_of_number_of_elemets_without_repeats(array)
-    puts "L1: #{ar_L1}"
-    puts "L2: #{ar_L2}"
+    print(new_massif(array))
+
+  else 
+    puts 'Команды с таким номером нет'
 end
