@@ -10,7 +10,7 @@ def min_max_reverse(list)
   list[index_min]=max
   list[index_max]=min
   #print(list.each_with_index.min)
-  print(list)
+  return(list)
 end
 
 def max_in_interval(list, a, b)
@@ -109,7 +109,7 @@ case method_num
     end
 
   when 2
-    min_max_reverse(array)
+    print(min_max_reverse(array))
   when 3
     puts "Результат: #{cycle_left(array)}"
   when 4
