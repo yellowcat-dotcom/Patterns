@@ -26,30 +26,23 @@ def max_in_interval(list, a, b)
 end
 
 def sred_arifmetich_abs(list)
-  kol=0
-  sum_abs=0
-  i=0
-  print("qqqqqqq")
-  if i==list.length then
-  #if list.empty? then
-    print("))))))")
-  else 
-    print("eeeee")
-    def sred_arifmetich_abss(list, kol, sum_abs, i)
-      print("wwwwww")
-      new_kol=kol+1
+  if list.empty? then
+    return 0
+  end
+  def sred_arifmetich_abss(list, sum_abs, i)
+    if i>=list.length then 
+      print(sum_abs/list.length)
+    else
       new_i=i+1
-      print(list[i])
-      if list[i]>=0 then
-        new_sum_abs=sum_abs+list[i]
-      else
-        new_sum_abs=sum_abs+(list[i]*(-1))
-      end
-      sred_arifmetich_abss(list,new_kol,new_sum_abs,new_i)
+      #print("new_i=",new_i)
+      new_sum= sum_abs + list[i].abs
+      #print("new_sum=",new_sum)
+      sred_arifmetich_abss(list,new_sum,new_i)
     end
   end
-  print (sum_abs/list.length)
+  sred_arifmetich_abss(list, 0, 0)
 end
+
 
 def new_massif(list)
 
