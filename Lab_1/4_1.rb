@@ -1,7 +1,10 @@
-def glob_min(list, index)
+#ПРоверка элемента по индексу: это глобальный минимум. true or false
+def glob_min?(list, index)
+  raise ArgumentError.new("Incorrect value!") if index==nil 
   list.each_with_index.min[1] ==index    
 end
 
+#метод возвращает новый списов, в котором min и max поменяны местами
 def min_max_reverse(list)
   max=list.each_with_index.max[0]
   index_max=list.each_with_index.max[1]
@@ -12,10 +15,12 @@ def min_max_reverse(list)
   return(list)
 end
 
-def max_in_interval(list, a, b)
+#Находится ли максимальный элемент в указанном интервале true or false
+def max_in_interval?(list, a, b)
   list.each_with_index.max[1].between?(a,b)     
 end
 
+#Возвращает среднее арифметическое модулей листа
 def sred_arifmetich_abs(list)
   list_abs=list.map{|x| 
     if x<0 then 
@@ -25,7 +30,7 @@ def sred_arifmetich_abs(list)
   return(list_abs.sum/list.length)
 end
 
-
+#возвращает новый лист с элементами, большими, чем среднее арифметическое списка, но меньшими, чем его максимальное значение.
 def new_massif(list)
   sr_ar=list.sum/list.length
   max_el=list.max 
