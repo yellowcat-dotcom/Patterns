@@ -3,7 +3,7 @@ class Student
     attr_accessor :last_name, :first_name, :paternal_name, :id, :phone, :git, :telegram, :email
 
     # конструктор
-    def initialize(last_name, first_name, paternal_name, id:nil, phone:nil, git:nil, telegram:nil, email:nil, )
+    def initialize(last_name, first_name, paternal_name, id:nil, phone:nil, git:nil, telegram:nil, email:nil)
       self.last_name = last_name
       self.first_name = first_name
       self.paternal_name = paternal_name
@@ -13,4 +13,16 @@ class Student
       self.telegram = telegram
       self.email = email
     end
+
+    def to_s
+      res = self.last_name + " " + self.first_name + " " + self.paternal_name  
+      res+=" id: #{self.id}" unless self.id.nil?
+      res+=" phone: #{self.phone}" unless self.phone.nil?
+      res+=" git: #{self.git}" unless self.git.nil?
+      res+=" telegram: #{self.telegram}" unless self.telegram.nil?
+      res+=" email: #{self.email}" unless self.email.nil?
+      res
+    end
   end
+
+
