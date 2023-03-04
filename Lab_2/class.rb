@@ -1,18 +1,16 @@
 class Student
     # создаем методы чтения и записи attr_accessor
-    attr_accessor :id, :phone, :git, :telegram, :email, :last_name, :first_name, :paternal_name
+    attr_accessor :last_name, :first_name, :paternal_name, :id, :phone, :git, :telegram, :email
 
     # конструктор
-    def initialize(last_name, first_name, paternal_name, options = {})
+    def initialize(last_name, first_name, paternal_name, id:nil, phone:nil, git:nil, telegram:nil, email:nil, )
       self.last_name = last_name
       self.first_name = first_name
       self.paternal_name = paternal_name
-      self.id = options[:id]
-      self.phone = options[:phone]
-      self.git = options[:git]
-      self.telegram = options[:telegram]
-      self.email = options[:email]
+      self.id = id
+      self.phone = phone
+      self.git = git
+      self.telegram = telegram
+      self.email = email
     end
-
-
   end
