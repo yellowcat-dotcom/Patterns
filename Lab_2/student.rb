@@ -1,7 +1,7 @@
 class Student
     # создаем методы чтения и записи attr_accessor
-    attr_accessor :id, :git, :telegram, :email
-    attr_reader :last_name, :first_name, :paternal_name, :phone
+    attr_accessor :id
+    attr_reader :last_name, :first_name, :paternal_name, :phone, :git, :telegram, :email
 
     #валидатор телефона
     def self.valid_phone?(phone)
@@ -12,6 +12,17 @@ class Student
     def self.valid_name?(name)
       name.match(/^[А-Я][а-я]+$/)
     end
+
+     #валидатор для git и telegram
+    def self.valid_account?(account)
+      account.match(/^@[A-Za-z0-9\-_]+$/)
+    end
+  
+    #валидатор почты
+    def self.valid_email?(email)
+      email.match(/^[A-Za-z0-9\-_]+@[A-Za-z]+\.([A-Za-z]+\.)*[A-Za-z]+$/)
+    end
+
 
     # конструктор
     def initialize(last_name, first_name, paternal_name, id:nil, phone:nil, git:nil, telegram:nil, email:nil)
@@ -51,6 +62,34 @@ class Student
       raise ArgumentError, "Incorrect value: paternal_name=#{paternal_name}!" if !paternal_name.nil? && !Student.valid_name?(paternal_name)
   
       @paternal_name = paternal_name
+    end
+
+    def git=(git)
+      raise ArgumentError, "Incorrect value: git=#{git}!" if !git.nil? && !Student.valid_account?(git)
+  
+      @git = git
+    end
+  
+    def telegram=(telegram)
+      raise ArgumentError, "Incorrect value: telegram=#{telegram}!" if !telegram.nil? && !Student.valid_account?(telegram)
+  
+      @telegram = telegram
+    end
+  
+    def email=(email)
+      raise ArgumentError, "Incorrect value: email=#{email}!" if !email.nil? && !Student.valid_email?(email)
+  
+      @email = email
+    end
+
+    def validate
+      !git.nil? && !contact.nil?
+    end
+
+    def set_contacts(phone: nil, telegram: nil, email: nil)
+      self.phone = phone if phone
+      self.telegram = telegram if telegram
+      self.email = email if email
     end
 
 
