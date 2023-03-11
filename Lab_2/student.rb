@@ -30,10 +30,9 @@ class Student
       self.first_name = first_name
       self.paternal_name = paternal_name
       self.id = id
-      self.phone = phone
       self.git = git
-      self.telegram = telegram
-      self.email = email
+      self.set_contacts(phone:phone, telegram:telegram, email:email)
+     
     end
 
 
