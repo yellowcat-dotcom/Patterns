@@ -82,7 +82,7 @@ class Student
     end
 
     def validate
-      !git.nil? && !contact.nil?
+      !git.nil? && !email.nil? && !telegram.nil? && !phone.nil?
     end
 
     def set_contacts(phone: nil, telegram: nil, email: nil)
