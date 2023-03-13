@@ -25,7 +25,7 @@ class Student
 
 
     # конструктор
-    def initialize(last_name, first_name, paternal_name, id:nil, phone:nil, git:nil, telegram:nil, email:nil)
+    def initialize(last_name:nil, first_name:nil, paternal_name:nil, id:nil, phone:nil, git:nil, telegram:nil, email:nil)
       self.last_name = last_name
       self.first_name = first_name
       self.paternal_name = paternal_name
